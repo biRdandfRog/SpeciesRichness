@@ -81,15 +81,13 @@ body <- dashboardBody(
                            Using this concept, the species accumulation curve can be used estimate the overall richness of the community, including species not observed.
                            Various asymptotic estimators have been developed for this purpose."),
                                 p("Check the box below to visualize 'Chao2' estimated richness"),
-                                checkboxInput("chao2","Show estimated species richness (+/- SE)", value=FALSE)
+                                checkboxInput("chao2","Show estimated species richness (Chao +/- SE)", value=FALSE)
                             )),
                      column(width=6,
-                            box(title=tags$b("How do we compare species richness?"), width=NULL,collapsible = TRUE,
-                                p("Richness is inherently sample-size dependent. This means that A site with a greater abundance of individuals or sampling effort, also has a greater probability of including more species.
-                           This makes it difficult to compare species richness among sites that differ in abundance. Comparisons must be done at equivalent sample sizes, with is why we rarey (and extrapolate.interpolate). Species accumulation curves 
-                           are used to compare species richness at a constant abundance."),
-                                p("It can be concluded that the two communities differ if the 95% Confidence Interval around the accumulation curve do not overlap."),br(),
-                                p("Interpolation vs Extrapolation: When the communities differ in the number of individuals or sampling effort, comparisons can be made only at a constant value.  
+                            box(title=tags$b("Comparing species richness?"), width=NULL,collapsible = TRUE,
+                                p("Richness is inherently sample-size dependent, meaning that a site with a greater number of individuals or sampling effort, has a greater likelihood of including more species.
+                           This makes it difficult to compare species richness among sites that differ in abundance of effort."),br(),
+                                p(tags$b("Interpolation vs Extrapolation:"), "When the communities differ in the number of individuals or sampling effort, comparison is made at a constant value.  
                            Interpolation compares the communities at the total number of individuals of the smaller community.  Extrapolation projects richness 
                            at a value greater than the smallest level."),
                                 radioButtons("compare","Compare richness:",choices=c("None selected","Interpolate","Extrapolate"),selected="None selected",inline=TRUE)
@@ -103,8 +101,22 @@ body <- dashboardBody(
               column(width=6,
                      box(title=tags$b("Literature"),width=NULL,
                          p("Gotelli, N.J., Colwell, R.K. 2010. Biological diversity: frontiers in measurement and assessment. A. E. Magurran and B. J. McGill, eds. pages 39-54"),
-                         a("See pdf", href="http://www.uvm.edu/~ngotelli/manuscriptpdfs/Chapter%204.pdf",target="_blank"))),
+                         a("See pdf", href="http://www.uvm.edu/~ngotelli/manuscriptpdfs/Chapter%204.pdf",target="_blank"),
+                         p("Gotelli, N.J., and Colwell. R.K. 2001. Quantifying biodiversity: procedures and pitfalls in the 
+                           measurement and comparison of species richness. Ecology. 4:379-391."),
+                         a("See paper",href="http://onlinelibrary.wiley.com/doi/10.1046/j.1461-0248.2001.00230.x/full",target="_blank"),
+                         p("Magurran, A. E. 1988. Ecological Diversity and its Measurement. Princeton University Press, Princeton, NJ.")),
+                     box(title=tags$b("This app"), solidHeader=TRUE,status="warning",width=NULL,
+                         p("This app was made by",a("Colleen Nell",href="www.collnell.com",target="_blank"),"with support from the", a("UCI Data Science Initiative summer fellowship (2016)",
+                                                                                                                                       href="http://datascience.uci.edu/2016/06/27/2016-data-science-summer-fellow/",target="_blank")),
+                         p("It is one part to a series of applications on", tags$a("Measuring and comparing ecological communities",href="www.bionerdz.com",target="_blank"), "using R."),
+                         p(tags$b("Get R script for these analyses:")),br(),
+                         a("Comparing Species Richness",href="https://raw.githubusercontent.com/biRdandfRog/SpeciesRichness/master/SR_code.R",target="_blank"),br(),
+                         p("What is a",tags$a("site x species community matrix?",href="https://collnell.shinyapps.io/diversity/",target="_blank")),br(),
+                         p("If you are new to R, check out this",a("Intro to R cookbook for Ecologists",href="http://rpubs.com/mooneyk/213152",target="_blank")),
+                         a("See code for application",href="https://github.com/biRdandfRog/SpeciesRichness",target="_blank"))),
               column(width=6,
+                  
                      box(title=tags$b("R packages"),width=NULL,
                          p("Several R packages have been developed for comparing, extrapolating, and estimating species richness.
                            The following were used in the development of this app."),
@@ -122,15 +134,7 @@ body <- dashboardBody(
                          a("Documentation",href="https://cran.r-project.org/web/packages/EcoSimR/EcoSimR.pdf",target="_blank"),br(),
                          h4("rich"),
                          p("An R package to analyze species richness"),
-                         a("Introduction to rich",href="")),
-                     box(title=tags$b("This app"), solidHeader=TRUE,status="warning",width=NULL,
-                         p("This app was made by",a("Colleen Nell",href="www.collnell.com",target="_blank"),"with support from the", a("UCI Data Science Initiative summer fellowship (2016)",
-                                                                                                                href="http://datascience.uci.edu/2016/06/27/2016-data-science-summer-fellow/",target="_blank")),
-                         p(tags$b("Get R script for these analyses:")),br(),
-                         a(href="",target="_blank"),br(),
-                         p("If you are new to R, check out this",a("Intro to R cookbook for Ecologists",href="http://rpubs.com/mooneyk/213152",target="_blank")),
-                         a("See code for application",href="https://github.com/collnell/R_vis/tree/master/richness",target="_blank")
-                         )
+                         a("Introduction to rich",href=""))
                      )
             )
     ),
@@ -207,9 +211,7 @@ body <- dashboardBody(
                      box(title=tags$b("Bird species richness in tree monoculture and polycultures"),width=NULL,
                          plotOutput("divplots"),br(),
                          radioButtons("xvar_ex","Change x-axis:",choices=c("Individual-based rarefaction curve"="ind","Sample-based rarefaciton curve"="site"),selected="ind")
-                         ),
-                    box(title=tags$b("Comparing Bird Richness"),width=NULL,
-                        p("Talk about comparing- takeaway etc"))
+                         )
                     
                      )
             )

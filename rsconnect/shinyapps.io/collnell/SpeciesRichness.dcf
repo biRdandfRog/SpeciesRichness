@@ -2,6 +2,6 @@ name: SpeciesRichness
 account: collnell
 server: shinyapps.io
 appId: 129091
-bundleId: 574459
+bundleId: 580042
 url: https://collnell.shinyapps.io/SpeciesRichness/
-when: 1475443842.67773
+when: 1475880372.29917
